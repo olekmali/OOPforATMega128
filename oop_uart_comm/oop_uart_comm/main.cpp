@@ -36,7 +36,7 @@ int main(void)
     comlink  datalink( &com1 );
 
     Uart0    &com0 = Uart0::getInstance();
-    com0.initialize(com_abase::uart_bps_57600, com_abase::uart_stop_two, com_abase::uart_parity_none);
+    com0.initialize(com_abase::uart_bps_9600, com_abase::uart_stop_two, com_abase::uart_parity_none);
     textlink debuglink( &com0 );    
 
     // MAIN SUPERLOOP

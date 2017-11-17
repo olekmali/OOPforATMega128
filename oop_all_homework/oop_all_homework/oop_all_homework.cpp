@@ -1,7 +1,7 @@
 /*
  * OOP Case study: all features test
  *
- * Created: 11/21/2016 11:55:00 PM
+ * Updated: 11/16/2017 11:55:00 PM
  *  Author: Aleksander Malinowski
  */ 
 
@@ -71,6 +71,7 @@ int main(void)
 
     MenuKeys KEY;
     ToggleButton B0;
+    // ^^^^^^^^^ Convert to autorepeat button per request in the code below
     uint8_t alive = 0;
 
     PWM_Generator<uint8_t> PWM(4, 100, 100);
@@ -143,7 +144,7 @@ int main(void)
         }            
         sei();
 
-        wdt_reset();                // comment this line, observe and put it back
+        wdt_reset();                // <--- comment this line, observe and put it back
     }
 
     return(0);

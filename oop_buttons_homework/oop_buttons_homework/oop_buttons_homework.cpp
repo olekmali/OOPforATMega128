@@ -40,7 +40,7 @@ int main(void)
 
         if (0==cnt) {
             cnt=16384;
-            disp.set( disp.get() ^ 0x80);
+            disp.set( disp.get() ^ LEDs::LED7);
         } else cnt--;
     }
 

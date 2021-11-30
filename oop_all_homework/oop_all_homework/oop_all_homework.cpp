@@ -2,7 +2,8 @@
  * OOP Case study: all features test
  *
  * Updated: 11/12/2019 11:35:00 PM
- *  Author: Aleksander Malinowski
+ * Updated: 11/29/2021 11:21:00 PM
+ * Author: Aleksander Malinowski
  */
 
 #include "lib_atomic.h"
@@ -11,8 +12,8 @@
 #include "bios_timer1.h"
 #include "bios_adc.h"
 #include "lib_pwm.h"
-#include "lib_buttons.h"
 
+#include "hw_buttons.h"
 #include "hw_buffer.h"
 
 #include <stdlib.h>
@@ -70,8 +71,9 @@ int main(void)
     LED.set(0);
 
     MenuKeys KEY;
-    ToggleButton B0;
-    // ^^^^^^^^^ Convert to autorepeat button per request in the code below
+    // TO DO
+    TogglePushButton B0;
+    // ^^^^^^^^^ Convert to autorepeat button
     uint8_t alive = 0;
 
     PWM_Generator<4, uint8_t> PWM(100, 100);
@@ -106,16 +108,16 @@ int main(void)
 
         if ( Channel0.ready() )
         {
-            PWM.setPWM(0, static_cast<uint16_t>(100)*Channel0.ShortAverage()/255);
-            PWM.setPWM(1, static_cast<uint16_t>(100)*Channel0.LongAverage()/255);
+            PWM.setPWM(0, static_cast<uint16_t>(100U)*Channel0.ShortAverage()/255U);
+            PWM.setPWM(1, static_cast<uint16_t>(100U)*Channel0.LongAverage()/255U);
         } else {
             PWM.setPWM(0, 0);
             PWM.setPWM(1, 0);
         }
         if ( Channel1.ready() )
         {
-            PWM.setPWM(2, static_cast<uint16_t>(100)*Channel1.ShortAverage()/255);
-            PWM.setPWM(3, static_cast<uint16_t>(100)*Channel1.LongAverage()/255);
+            PWM.setPWM(2, static_cast<uint16_t>(100U)*Channel1.ShortAverage()/255U);
+            PWM.setPWM(3, static_cast<uint16_t>(100U)*Channel1.LongAverage()/255U);
         } else {
             PWM.setPWM(2, 0);
             PWM.setPWM(3, 0);
@@ -144,7 +146,7 @@ int main(void)
         }
         sei();
 
-        wdt_reset();                // <--- comment this line, observe and put it back
+        wdt_reset();
     }
 
     return(0);
